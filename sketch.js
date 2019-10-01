@@ -4,6 +4,11 @@ var moonX, moonY; //final position of the moon
 var r = 104; //r value of the sky's daytime color 
 var g = 210; //g value of the sky's daytime color
 var counter1, counter2, counter3, counter4, counter5, counter6; //Counters for each of the 6 clouds 
+var starX = []; //x positions of the stars
+var starY = []; //y positions of the stars
+var starSize = []; //sizes of the stars 
+var starOp = []; //opacities of the stars 
+var num = 100; //# of stars
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -13,6 +18,14 @@ function setup() {
 	sunY = cenY;
 	moonX = (cenX*3)/2;
 	moonY = cenY;
+	
+	//Setting up the stars 
+	for (var i=0; i<num; i++) {
+		starX[i] = random(windowWidth); 
+		starY[i] = random(windowHeight);
+		starSize[i] = random(10);
+		starOp[i] = random(255);
+	}
 	
 	//Initializing the counters at the clouds' starting points	
 	counter1 = windowWidth; 
@@ -63,10 +76,8 @@ function drawStars() {
 	fill(r+slider.value(), g+slider.value(), 255, slider.value()); //Fourth number is the transparency
 	noStroke();
 
-	for (var i=0; i<windowWidth; i+=50) {
-		for (var j=0; j<windowHeight; j+=50) {
-			ellipse(i*4, j*4, 10, 10);
-		}
+	for (var j=0; j<num; j++) {
+		ellipse(starX[j], starY[j], starSize[j], starSize[j]); 
 	}	
 }
 
