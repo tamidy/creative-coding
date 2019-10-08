@@ -107,8 +107,8 @@ function drawSun() {
 	
 	//Sunglasses 
 	fill(0); //Black 
-	ellipse(sunX-30, (sunY-40)+slider.value(), 45, 45);
-	ellipse(sunX+30, (sunY-40)+slider.value(), 45, 45);
+	ellipse(sunX-30, (sunY-40)+slider.value(), 50, 50);
+	ellipse(sunX+30, (sunY-40)+slider.value(), 50, 50);
 	stroke(0); //Black, specifically for lines 
 	strokeWeight(5); //Thickness of the line 
 	line(sunX-90, (sunY-40)+slider.value(), sunX+90, (sunY-40)+slider.value());
@@ -127,13 +127,12 @@ function drawMoon() {
 	ellipse(moonX, (moonY-slider.value())+windowHeight, 200, 200);
 	
 	//Eyes
-	stroke(0);
 	fill(255); //White 
 	ellipse(moonX-30, ((moonY-40)-slider.value())+windowHeight, 45, 45);
 	ellipse(moonX+30, ((moonY-40)-slider.value())+windowHeight, 45, 45);
 	fill(0); //Black 
-	ellipse(moonX-30, ((moonY-40)-slider.value())+windowHeight, 15, 15);
-	ellipse(moonX+30, ((moonY-40)-slider.value())+windowHeight, 15, 15);
+	ellipse(moonX-30, ((moonY-43)-slider.value())+windowHeight, 25, 25);
+	ellipse(moonX+30, ((moonY-43)-slider.value())+windowHeight, 25, 25);
 	
 	//Smile
 	stroke(0); //Black, specifically for lines 
