@@ -1,14 +1,17 @@
-var cenX, cenY;
-var sunX, sunY; //final position of the sun
-var moonX, moonY; //final position of the moon
-var r = 104; //r value of the sky's daytime color 
-var g = 210; //g value of the sky's daytime color
-var counter1, counter2, counter3, counter4, counter5, counter6; //Counters for each of the 6 clouds 
-var starX = []; //x positions of the stars
-var starY = []; //y positions of the stars
-var starSize = []; //sizes of the stars 
-var starOp = []; //opacities of the stars 
-var num = 100; //# of stars
+let cenX, cenY;
+let sunX, sunY; //final position of the sun
+let moonX, moonY; //final position of the moon
+
+let r = 104; //r value of the sky's daytime color 
+let g = 210; //g value of the sky's daytime color
+
+let counters = []; //Counters for each of the 6 clouds 
+
+let starX = []; //x positions of the stars
+let starY = []; //y positions of the stars
+let starSize = []; //sizes of the stars 
+let starOp = []; //opacities of the stars 
+let num = 100; //# of stars
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -20,20 +23,20 @@ function setup() {
 	moonY = cenY;
 	
 	//Setting up the stars 
-	for (var i=0; i<num; i++) {
+	for (let i=0; i<num; i++) {
 		starX[i] = random(windowWidth); 
 		starY[i] = random(windowHeight);
 		starSize[i] = random(10);
 		starOp[i] = random(255);
 	}
 	
-	//Initializing the counters at the clouds' starting points	
-	counter1 = windowWidth; 
-	counter2 = cenX;
-	counter3 = 0;	
-	counter4 = (cenX*3)/2;
-	counter5 = cenX/2;
-	counter6 = -cenX/2;
+	//Initializing the counters at the clouds' starting points
+	counters[0] = windowWidth; 
+	counters[1] = cenX;
+	counters[2] = 0;	
+	counters[3] = (cenX*3)/2;
+	counters[4] = cenX/2;
+	counters[5] = -cenX/2;
 	
 	slider = createSlider(0, windowHeight, 0);
 	slider.position(cenX-150,20);
@@ -46,26 +49,25 @@ function draw() {
 	//STARS 
 	drawStars();
 	
-	//CLOUDS
-	counter1+=.8; //Making the clouds move over time 
-	counter2+=.8;
-	counter3+=.8;
-	counter4+=.8;
-	counter5+=.8;
-	counter6+=.8;
-	if (counter1>windowWidth+(cenX/2)) { counter1 = -cenX/2; } //Once they reach a certain point they start back at the left
-	if (counter2>windowWidth+(cenX/2)) { counter2 = -cenX/2; }	
-	if (counter3>windowWidth+(cenX/2)) { counter3 = -cenX/2; }	
-	if (counter4>windowWidth+(cenX/2)) { counter4 = -cenX/2; }	
-	if (counter5>windowWidth+(cenX/2)) { counter5 = -cenX/2; }	
-	if (counter6>windowWidth+(cenX/2)) { counter6 = -cenX/2; }	
-	drawCloud(counter1, cenY/2);
-	drawCloud(counter2, cenY/2);
-	drawCloud(counter3, cenY/2); 
-	drawCloud(counter4, (cenY*3)/2);
-	drawCloud(counter5, (cenY*3)/2);
-	drawCloud(counter6, (cenY*3)/2);
+	//CLOUDS		
+	for (let i=0; i<6; i++) {
+		//Making the clouds move over time 
+		counters[i] += 0.8; 
 		
+		if (counters[i]>windowWidth+(cenX/2)) { 
+			//Once they reach a certain point they start back at the left
+			counters[i] = -cenX/2; 
+		}
+		
+		let tempY;		
+		if (i>=0 && i<3) {
+			tempY = cenY/2; 
+		} else {
+			tempY = (cenY*3)/2;
+		}
+		drawCloud(counters[i], tempY);
+	}
+	
 	//SUN 
 	drawSun();
 	//MOON
@@ -76,7 +78,7 @@ function drawStars() {
 	fill(r+slider.value(), g+slider.value(), 255, slider.value()); //Fourth number is the transparency
 	noStroke();
 
-	for (var j=0; j<num; j++) {
+	for (let j=0; j<num; j++) {
 		ellipse(starX[j], starY[j], starSize[j], starSize[j]); 
 	}	
 }
