@@ -26,7 +26,7 @@ function setup() {
 	for (let i=0; i<num; i++) {
 		starX[i] = random(windowWidth); 
 		starY[i] = random(windowHeight);
-		starSize[i] = random(10);
+		starSize[i] = random(1, 10);
 		starOp[i] = random(255);
 	}
 	
