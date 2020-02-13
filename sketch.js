@@ -6,6 +6,7 @@ let r = 104; //r value of the sky's daytime color
 let g = 210; //g value of the sky's daytime color
 
 let counters = []; //Counters for each of the 6 clouds 
+let slider;
 
 let starX = []; //x positions of the stars
 let starY = []; //y positions of the stars
@@ -25,7 +26,7 @@ function setup() {
 	//Setting up the stars 
 	for (let i=0; i<num; i++) {
 		starX[i] = random(windowWidth); 
-		starY[i] = random(windowHeight);
+		starY[i] = random(windowHeight); 
 		starSize[i] = random(1, 10);
 		starOp[i] = random(255);
 	}
@@ -104,23 +105,8 @@ function drawCloud(x, y) {
 
 function drawSun() {
 	noStroke();
-	fill(255, 255, 0); //Yellow 
+	fill(255, 233, 60); //Yellow 
 	ellipse(sunX, sunY+slider.value(), 200, 200);
-	
-	//Sunglasses 
-	fill(0); //Black 
-	ellipse(sunX-30, (sunY-40)+slider.value(), 50, 50);
-	ellipse(sunX+30, (sunY-40)+slider.value(), 50, 50);
-	stroke(0); //Black, specifically for lines 
-	strokeWeight(5); //Thickness of the line 
-	line(sunX-90, (sunY-40)+slider.value(), sunX+90, (sunY-40)+slider.value());
-	
-	//Smile
-	noFill();
-	bezier(sunX-50, (sunY+20)+slider.value(), 
-				 sunX-25, (sunY+50)+slider.value(), 
-				 sunX+25, (sunY+50)+slider.value(), 
-				 sunX+50, (sunY+20)+slider.value()); //Curve
 }
 
 function drawMoon() {
@@ -128,30 +114,14 @@ function drawMoon() {
 	fill(194, 236, 255); //Blue
 	ellipse(moonX, (moonY-slider.value())+windowHeight, 200, 200);
 	
-	//Eyes
-	fill(255); //White 
-	ellipse(moonX-30, ((moonY-40)-slider.value())+windowHeight, 45, 45);
-	ellipse(moonX+30, ((moonY-40)-slider.value())+windowHeight, 45, 45);
-	fill(0); //Black 
-	ellipse(moonX-30, ((moonY-43)-slider.value())+windowHeight, 25, 25);
-	ellipse(moonX+30, ((moonY-43)-slider.value())+windowHeight, 25, 25);
-	
-	//Smile
-	stroke(0); //Black, specifically for lines 
-	strokeWeight(5); //Thickness of the line 
-	noFill();
-	bezier(moonX-50, ((moonY+20)-slider.value())+windowHeight, 
-				 moonX-25, ((moonY+50)-slider.value())+windowHeight, 
-				 moonX+25, ((moonY+50)-slider.value())+windowHeight, 
-				 moonX+50, ((moonY+20)-slider.value())+windowHeight); //Curve 
-	
 	//Craters
 	noStroke();
 	fill(105, 169, 232);
-	ellipse(moonX-60, ((moonY+50)-slider.value())+windowHeight, 20, 20);
-	ellipse(moonX+70, ((moonY+30)-slider.value())+windowHeight, 20, 20);
+	
+	ellipse(moonX-35, ((moonY+40)-slider.value())+windowHeight, 30, 30);
+	ellipse(moonX+50, ((moonY+30)-slider.value())+windowHeight, 20, 20);
 	ellipse(moonX-60, ((moonY)-slider.value())+windowHeight, 10, 10);
-	ellipse(moonX+65, ((moonY-50)-slider.value())+windowHeight, 10, 10);	
+	ellipse(moonX+45, ((moonY-50)-slider.value())+windowHeight, 30, 30);	
 	ellipse(moonX-30, ((moonY-80)-slider.value())+windowHeight, 10, 10);
 	ellipse(moonX+20, ((moonY+60)-slider.value())+windowHeight, 10, 10);
 }
