@@ -1,2 +1,2 @@
-# sun-and-moon
-This repository contains my Sun and Moon sketch.
+# Sun and Moon
+This repo contains a p5.js sketch.
