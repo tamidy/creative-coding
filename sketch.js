@@ -40,8 +40,8 @@ function setup() {
 	counters[5] = -cenX/2;
 	
 	slider = createSlider(0, windowHeight, 0);
-	slider.position(cenX-150,20);
-	slider.size(300,10);
+	slider.position(cenX-150, 20);
+	slider.size(300, 10);
 }
 
 function draw() {	
@@ -55,13 +55,13 @@ function draw() {
 		//Making the clouds move over time 
 		counters[i] += 0.8; 
 		
-		if (counters[i]>windowWidth+(cenX/2)) { 
+		if (counters[i] > windowWidth+(cenX/2)) { 
 			//Once they reach a certain point they start back at the left
 			counters[i] = -cenX/2; 
 		}
 		
 		let tempY;		
-		if (i>=0 && i<3) {
+		if (i >= 0 && i < 3) {
 			tempY = cenY/2; 
 		} else {
 			tempY = (cenY*3)/2;
